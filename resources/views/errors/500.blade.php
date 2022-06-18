@@ -2,6 +2,6 @@
 
 @section('content')
     <div class="container-fluid">
-        <h1 class="text-black-50">Everything's broke! D=</h1>
+        <h1 class="text-black-50">ERROR 500: Something's broken! D= (This page is Under Development)</h1>
     </div>
 @endsection

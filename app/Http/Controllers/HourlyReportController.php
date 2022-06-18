@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\HourlyReport;
-use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,7 +16,6 @@ class HourlyReportController extends Controller
     public function index()
     {
         $hourlyReports = HourlyReport::orderBy('created_at', 'asc')->get();
-//        dd($hourlyReports);
 
         return view('hourlyReports.index', compact('hourlyReports'));
     }

@@ -19,3 +19,14 @@
         <p>Hourly Reports</p>
     </a>
 </li>
+<li class="nav-item">
+    <a href="{{ route('hourlyReports.index') }}"
+       class="nav-link {{ Request::is('hourlyReports') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-clipboard-check"></i>
+        <p>New Option</p>
+    </a>
+</li>
+
+
+
+

@@ -31,3 +31,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('/api', ApiController::class);
 
 Route::resource('/hourlyReports', HourlyReportController::class);
+
+URL::forceScheme('https');

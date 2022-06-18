@@ -16,7 +16,7 @@ class HourlyReportController extends Controller
      */
     public function index()
     {
-        $hourlyReports = HourlyReport::all();
+        $hourlyReports = HourlyReport::orderBy('created_at', 'asc')->get();
 //        dd($hourlyReports);
 
         return view('hourlyReports.index', compact('hourlyReports'));

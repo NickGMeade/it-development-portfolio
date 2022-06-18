@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('extra_info');
             $table->text('action')->nullable();
             $table->text('abnormality')->nullable();
-            $table->boolean('approved')->default(false);
             $table->timestamps();
         });
     }

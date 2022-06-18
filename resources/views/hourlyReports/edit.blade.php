@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-@extends('layouts.app')
-
 @section('content')
     <br>
     <div class="container-fluid">
@@ -21,36 +19,37 @@
                 <h4><span class="badge badge-warning float-right"><i class="fa fa-exclamation-circle"
                                                                      style="font-size:20px;color:white"></i> * Required</span>
                 </h4>
-                <form class="was-validated" method="POST" action="{{ route('hourlyReports.store') }}">
+                <form class="was-validated" method="POST" action="{{ route('hourlyReports.update',$hourlyReport)}}">
                     @csrf
+                    @method('PUT')
                     <div class="form-row">
                         <div class="col-md-6 mb-3" style="width:100%;">
-                            <label class="required" for="def_id">Issue ID# *</label>
+                            <label class="required" for="def_id">Issue *</label>
                             <div>
                                 <select name="def_id" id="def_id" onchange="addExtraInfo()"
                                         class="custom-select @error('def_id') is-invalid @enderror"
                                         required>
                                     <option value="">Select one</option>
                                     <option
-                                        value=1 {{ $hourlyReport->def_id === '1' ? 'selected' : ''}}>
+                                        value='1. Stable Stacked Pallets' {{ $hourlyReport->def_id === '1. Stable Stacked Pallets' ? 'selected' : ''}}>
                                         1. Stable Stacked Pallets
                                     </option>
                                     <option
-                                        value='2' {{ $hourlyReport->def_id === '2' ? 'selected' : ''}}>
+                                        value='2. Dust, Fungi & Quality Planks' {{ $hourlyReport->def_id === '2. Dust, Fungi & Quality Planks' ? 'selected' : ''}}>
                                         2. Dust, Fungi & Quality Planks
                                     </option>
                                     <option
-                                        value='3' {{ $hourlyReport->def_id === '3' ? 'selected' : ''}}>
+                                        value='3. Measurement Pallet & Parts' {{ $hourlyReport->def_id === '3. Measurement Pallet & Parts' ? 'selected' : ''}}>
                                         3. Measurement Pallet & Parts
                                     </option>
-                                    <option value='4' {{ $hourlyReport->def_id === '4' ? 'selected' : ''}}>
+                                    <option value='4. Position Nails' {{ $hourlyReport->def_id === '4. Position Nails' ? 'selected' : ''}}>
                                         4. Position Nails
                                     </option>
-                                    <option value='5' {{ $hourlyReport->def_id === '5' ? 'selected' : ''}}>
+                                    <option value='5. Corners/Stamps' {{ $hourlyReport->def_id === '5. Corners/Stamps' ? 'selected' : ''}}>
                                         5. Corners/Stamps
                                     </option>
                                     <option
-                                        value='6' {{ $hourlyReport->def_id === '6' ? 'selected' : ''}}>
+                                        value='6. Abnormality Material' {{ $hourlyReport->def_id === '6. Abnormality Material' ? 'selected' : ''}}>
                                         6. Abnormality Material
                                     </option>
                                 </select>
@@ -75,7 +74,7 @@
                         <label class="label">Action:</label>
                         <div class="control">
                                         <textarea name="action" placeholder="Action taken..."
-                                                  class="form-control @error('action') is-invalid @enderror">{{ old('action') }}</textarea>
+                                                  class="form-control @error('action') is-invalid @enderror">{{ $hourlyReport->action }}</textarea>
                         </div>
                         @error('action')
                         <p class="help is-danger">{{ $message }}</p>
@@ -86,35 +85,13 @@
                         <label class="label">Abnormalities:</label>
                         <div class="control">
                                         <textarea name="abnormality" placeholder="Abnormalities..."
-                                                  class="form-control @error('abnormality') is-danger @enderror">{{ old('abnormality') }}</textarea>
+                                                  class="form-control @error('abnormality') is-danger @enderror">{{ $hourlyReport->abnormality }}</textarea>
                         </div>
                         @error('abnormality')
                         <p class="help is-danger">{{ $message }}</p>
                         @enderror
                     </div>
 
-                    <div class="col-md-6 mb-3">
-                        <label class="">Approved:</label>
-                        <div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" id="approved" name="approved" class="custom-control-input"
-                                       value="1">
-                                <label class="custom-control-label" for="approved">
-                                    <i class="fas fa-check fa-2x has-text-success p-2"></i>
-                                </label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" id="notApproved" name="approved" class="custom-control-input"
-                                       value="0" checked>
-                                <label class="custom-control-label" for="notApproved">
-                                    <i class="fa-solid fa-xmark has-text-danger p-2">X</i>
-                                </label>
-                            </div>
-                            @error('difference')
-                            <p class="help is-danger">{{ $message }}</p>
-                            @enderror
-                        </div>
-                    </div>
                     <div class="field is-grouped">
                         {{-- Here are the form buttons: save, reset and cancel --}}
                         <div class="control">
@@ -145,17 +122,17 @@
             let selected = options.value;
             let extraInfo = document.getElementById("extra_info");
 
-            if (selected == 1) {
+            if (selected === '1. Stable Stacked Pallets') {
                 extraInfo.value = 'No Shaky Pallets';
-            } else if (selected == 2) {
+            } else if (selected === '2. Dust, Fungi & Quality Planks') {
                 extraInfo.value = 'Per Pallet and Customer Dependent';
-            } else if (selected == 3) {
+            } else if (selected === '3. Measurement Pallet & Parts') {
                 extraInfo.value = 'Clear and Easy to Read';
-            } else if (selected == 4) {
+            } else if (selected === '4. Position Nails') {
                 extraInfo.value = 'Length, Width & Height';
-            } else if (selected == 5) {
+            } else if (selected === '5. Corners/Stamps') {
                 extraInfo.value = 'No Protruding Nails';
-            } else if (selected == 6) {
+            } else if (selected === '6. Abnormality Material') {
                 extraInfo.value = 'All Corners & Stamps Correct';
             }
         }

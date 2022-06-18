@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-@extends('layouts.app')
-
 @section('content')
     <br>
     <div class="container-fluid">
@@ -25,32 +23,32 @@
                     @csrf
                     <div class="form-row">
                         <div class="col-md-6 mb-3" style="width:100%;">
-                            <label class="required" for="def_id">Issue ID# * </label>
+                            <label class="required" for="def_id">Issue * </label>
                             <div>
                                 <select name="def_id" id="def_id" onchange="addExtraInfo()"
                                         class="custom-select @error('def_id') is-invalid @enderror"
                                         required>
                                     <option value="">Select one</option>
                                     <option
-                                        value=1 {{ old('def_id') ? 'selected' : ''}}>
+                                        value='1. Stable Stacked Pallets' {{ old('def_id') ? 'selected' : ''}}>
                                         1. Stable Stacked Pallets
                                     </option>
                                     <option
-                                        value='2' {{ old('def_id') ? 'selected' : ''}}>
+                                        value='2. Dust, Fungi & Quality Planks' {{ old('def_id') ? 'selected' : ''}}>
                                         2. Dust, Fungi & Quality Planks
                                     </option>
                                     <option
-                                        value='3' {{ old('def_id') ? 'selected' : ''}}>
+                                        value='3. Measurement Pallet & Parts' {{ old('def_id') ? 'selected' : ''}}>
                                         3. Measurement Pallet & Parts
                                     </option>
-                                    <option value='4' {{ old('def_id') ? 'selected' : ''}}>
+                                    <option value='4. Position Nails' {{ old('def_id') ? 'selected' : ''}}>
                                         4. Position Nails
                                     </option>
-                                    <option value='5' {{ old('def_id') ? 'selected' : ''}}>
+                                    <option value='5. Corners/Stamps' {{ old('def_id') ? 'selected' : ''}}>
                                         5. Corners/Stamps
                                     </option>
                                     <option
-                                        value='6' {{ old('def_id') ? 'selected' : ''}}>
+                                        value='6. Abnormality Material' {{ old('def_id') ? 'selected' : ''}}>
                                         6. Abnormality Material
                                     </option>
                                 </select>
@@ -93,28 +91,6 @@
                         @enderror
                     </div>
 
-                    <div class="col-md-6 mb-3">
-                        <label class="">Approved:</label>
-                        <div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" id="approved" name="approved" class="custom-control-input"
-                                       value="1">
-                                <label class="custom-control-label" for="approved">
-                                    <i class="fas fa-check fa-2x has-text-success p-2"></i>
-                                </label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" id="notApproved" name="approved" class="custom-control-input"
-                                       value="0" checked>
-                                <label class="custom-control-label" for="notApproved">
-                                    <i class="fa-solid fa-xmark has-text-danger p-2">X</i>
-                                </label>
-                            </div>
-                            @error('difference')
-                            <p class="help is-danger">{{ $message }}</p>
-                            @enderror
-                        </div>
-                    </div>
                     <div class="field is-grouped">
                         {{-- Here are the form buttons: save, reset and cancel --}}
                         <div class="control">
@@ -140,17 +116,17 @@
             let selected = options.value;
             let extraInfo = document.getElementById("extra_info");
 
-            if (selected == 1) {
+            if (selected == '1. Stable Stacked Pallets') {
                 extraInfo.value = 'No Shaky Pallets';
-            } else if (selected == 2) {
+            } else if (selected == '2. Dust, Fungi & Quality Planks') {
                 extraInfo.value = 'Per Pallet and Customer Dependent';
-            } else if (selected == 3) {
+            } else if (selected == '3. Measurement Pallet & Parts') {
                 extraInfo.value = 'Clear and Easy to Read';
-            } else if (selected == 4) {
+            } else if (selected == '4. Position Nails') {
                 extraInfo.value = 'Length, Width & Height';
-            } else if (selected == 5) {
+            } else if (selected == '5. Corners/Stamps') {
                 extraInfo.value = 'No Protruding Nails';
-            } else if (selected == 6) {
+            } else if (selected == '6. Abnormality Material') {
                 extraInfo.value = 'All Corners & Stamps Correct';
             }
         }

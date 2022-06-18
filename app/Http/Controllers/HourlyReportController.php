@@ -106,7 +106,6 @@ class HourlyReportController extends Controller
             'extra_info'=>'required',
             'action' =>'string|nullable',
             'abnormality'=> 'string|nullable',
-            'approved'=>'required|boolean',
         ]);
 
         return $validatedAtributes;

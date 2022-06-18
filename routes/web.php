@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\ApiController;
+use App\Http\Controllers\HourlyReportController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,10 +16,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+Auth::routes();
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
+Route::resource('/api', ApiController::class);
+
+Route::resource('/hourlyReports', HourlyReportController::class);

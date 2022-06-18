@@ -15,7 +15,6 @@ Vagrant.configure("2") do |config|
   config.vm.box = "bento/ubuntu-20.04"
   config.vm.box_version = "202112.19.0"
   config.vm.box_url = "https://app.vagrantup.com/bento/boxes/ubuntu-20.04/"
-#   config.vm.provision :shell, path:"bootstrap.sh"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -66,18 +65,26 @@ Vagrant.configure("2") do |config|
   # Enable provisioning with a shell script. Additional provisioners such as
   # Ansible, Chef, Docker, Puppet and Salt are also available. Please see the
   # documentation for more information about their specific syntax and use.
-  config.vm.provision "shell", inline: <<-SHELL
-    apt update
-    # Enable use of PHP 8.1
-    apt install -y lsb-release ca-certificates apt-transport-https software-properties-common
-    add-apt-repository ppa:ondrej/php
-    # Install Apache2, PHP, MySQL, and other required packages
-    apt update
-    apt install -y apache2 mysql-server php8.1 php8.1-mysql
-    # Execute the development.conf file
-    cp /home/vagrant/it-development-portfolio/setup/development.conf /etc/apache2/sites-available/development.conf
-    a2ensite development.conf
-    a2dissite 000-default.conf
-    systemctl reload apache2
-  SHELL
+#   config.vm.provision "shell", inline: <<-SHELL
+#     apt update
+#     # Enable use of PHP 8.1
+#     apt install -y lsb-release ca-certificates apt-transport-https software-properties-common
+#     add-apt-repository ppa:ondrej/php
+#     # Install Apache2, PHP, MySQL, and other required packages
+#     apt update
+#     apt install -y apache2 mysql-server php8.1 php8.1-mysql
+#     # Execute the development.conf file
+#     cp /home/vagrant/it-development-portfolio/setup/development.conf /etc/apache2/sites-available/development.conf
+#     a2ensite development.conf
+#     a2dissite 000-default.conf
+#     systemctl reload apache2
+#     # Setting up Database and User
+#     echo "create database development" | mysql
+#     echo "CREATE USER 'development'@'localhost' IDENTIFIED BY 'development'" | mysql
+#     echo "GRANT ALL PRIVILEGES ON development.* TO 'development'@'localhost';" | mysql
+#     echo "flush privileges" | mysql
+#   SHELL
+
+    config.vm.provision :shell, path:"provisions/bootstrap.sh"
+#     config.vm.provision :shell, path:"provisions/sql.sh"
 end

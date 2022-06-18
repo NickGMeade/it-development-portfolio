@@ -30,20 +30,24 @@
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown user-menu">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                    <img src="https://assets.infyom.com/logo/blue_logo_150x150.png"
+                    <img src="img/pokeball.png"
                          class="user-image img-circle elevation-2" alt="User Image">
                 </a>
                 <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                     <!-- User image -->
-                    <li class="user-header bg-primary">
-                        <img src="https://assets.infyom.com/logo/blue_logo_150x150.png"
+                    <li class="user-header bg-light">
+                        <img src="img/pokeball.png"
                              class="img-circle elevation-2"
                              alt="User Image">
+                        <p>
+                        <h6> {{ Auth::user()->name }}</h6>
+                        <small>Member since {{ Auth::user()->created_at->format('M. Y') }}</small>
+                        </p>
                     </li>
                     <!-- Menu Footer-->
                     <li class="user-footer">
-                        <a href="#" class="btn btn-default btn-flat">Profile</a>
-                        <a href="#" class="btn btn-default btn-flat float-right"
+{{--                        <a href="#" class="btn btn-default btn-flat">Profile</a>--}}
+                        <a href="#" class="btn btn-secondary btn-flat float-right"
                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             Sign out
                         </a>
@@ -57,9 +61,9 @@
     </nav>
 
     <!-- Left side column. contains the logo and sidebar -->
-@include('layouts.sidebar')
+    @include('layouts.sidebar')
 
-<!-- Content Wrapper. Contains page content -->
+    <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <section class="content">
             @yield('content')
